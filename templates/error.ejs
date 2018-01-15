@@ -1,0 +1,23 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Set up a recurring payment using Stripe for <%= vendor.name %>">
+        <title>Error setting up recurring payment - <%= vendor.name %></title>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1>Error: <small><%= error.message || 'Unknown error' %></small></h1>
+                    <p>Something went wrong. Please <a href="mailto:<%= vendor.email %>">contact <%= vendor.name %></a>.</p>
+                    <% if (error.retryUrl) { %>
+                        <a class="btn btn-primary" href="<%= error.retryUrl %>">Try again</a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

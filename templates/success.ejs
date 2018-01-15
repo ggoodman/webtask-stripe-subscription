@@ -1,0 +1,21 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Set up a recurring payment using Stripe for <%= vendor.name %>">
+        <title>Subscription created - <%= vendor.name %></title>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1>Completed subscription!</h1>
+                    <p>You have successfully subscribed to: <strong><%= plan.name %></strong></p>
+                    <p>Your business is appreciated. If you have any questions, please don't hesitate to <a href="mailto:<%= vendor.email %>">contact <%= vendor.name %></a>.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

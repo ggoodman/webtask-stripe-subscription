@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Set up a recurring payment using Stripe for <%=vendor.name%>">
+        <title>Set up recurring payment - <%= vendor.name %></title>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1>Enter payment details</h1>
+                    <p>To simplify recurring billing and invoicing for both you and for me, I have created an integration with <a href="https://stripe.com" target="_blank" rel="noopener">Stripe</a>. Clicking <strong>Set up Subscription</strong> will show a pop-up form asking for billing information. This information will be submitted directly to Stripe in a secure manner. I will never be privvy to the credit card details and will instead only receive a <em>token</em> that represents your card.</p>
+                    <p>Stripe will automatically invoice and charge your card for the below amount on a recurring monthly basis. The invoice and charge date will be the anniversary date of when you complete this form.</p>
+                    <form action="<%= baseHref || '' %>/charge" method="POST">
+                        <article>
+                            <label><%= plan.name %> ($<%= plan.amount / 100 %> <%= plan.currency.toUpperCase() %> / <%= plan.interval %>)</label>
+                        </article>
+                        <article>
+                            <input type="hidden" name="planId" value="<%= plan.id %>">
+                        </article>
+                        <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                            data-key="<%= stripe.publishableKey %>"
+                            data-label="Set up Subscription"
+                            data-locale="auto"
+                            data-name="<%= vendor.name %>"
+                            data-description="<%= plan.name %>"
+                            data-amount="<%= plan.amount %>"
+                            data-currency="<%= plan.currency %>"
+                            data-billing-address="true"
+                            data-allow-remember-me="false"
+                        ></script>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
